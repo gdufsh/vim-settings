@@ -11,11 +11,11 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " add your plugin
-Plugin 'scrooloose/nerdtree'    " 目录浏览
-Plugin 'godlygeek/tabular'      " 多行对齐
-Plugin 'Tagbar'                 " 结构预览
-Plugin 'ctrlpvim/ctrlp.vim'     " 全局搜索
-Plugin 'Auto-Pairs'             " 自动匹配
+Plugin 'scrooloose/nerdtree'    " directory preview
+Plugin 'godlygeek/tabular'      " alignment by selected label
+Plugin 'Tagbar'                 " variables and functions preview
+Plugin 'ctrlpvim/ctrlp.vim'     " find label
+Plugin 'Auto-Pairs'             " auto pairs
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
