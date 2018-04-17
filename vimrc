@@ -47,6 +47,9 @@ endif
 autocmd InsertLeave * se nocul
 autocmd InsertEnter * se cul
 
+" 文件编码
+set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
+
 " 智能对齐
 set smartindent
 " 自动对齐
