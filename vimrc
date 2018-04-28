@@ -55,7 +55,7 @@ set smartindent
 " 自动对齐
 set autoindent
 
-"  统一缩进为4
+" 统一缩进为4
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -91,9 +91,16 @@ set autochdir
 " 设置向上查找tags文件
 set tags=./tags;$HOME
 
+" 显示TAB和行末空格
+set list
+set listchars=tab:>-,trail:-
+
+" Python文件自动用空格替代TAB
+autocmd FileType python setlocal expandtab
+
 " 脚本目录下自动设置LPC文件类型
-autocmd FileType c,h 
-\ if getcwd() =~ "logic" 
+autocmd FileType c,h
+\ if getcwd() =~ "logic"
 \	| setlocal ft=lpc
 \	| let lpc_syntax_for_c=1
 \	| set tabstop=8
@@ -116,7 +123,7 @@ nmap <F5> :NERDTreeToggle<CR>
 " Tagbar
 let g:tagbar_autofocus=1
 nmap <F6> :TagbarToggle<CR>
-let g:tagbar_type_typescript = {                                                  
+let g:tagbar_type_typescript = {
   \ 'ctagsbin' : 'tstags',
   \ 'ctagsargs' : '-f-',
   \ 'kinds': [
@@ -133,7 +140,7 @@ let g:tagbar_type_typescript = {
     \ 'c:const:0:1',
   \ ],
   \ 'sort' : 0
-\ } 
+\ }
 
 " ctrlp
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
