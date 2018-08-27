@@ -11,11 +11,20 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " add your plugin
-Plugin 'scrooloose/nerdtree'    " directory preview
-Plugin 'godlygeek/tabular'      " alignment by selected label
-Plugin 'Tagbar'                 " variables and functions preview
-Plugin 'ctrlpvim/ctrlp.vim'     " find label
-Plugin 'Auto-Pairs'             " auto pairs
+Plugin 'scrooloose/nerdtree'     " directory preview
+Plugin 'godlygeek/tabular'       " alignment by selected label
+Plugin 'Tagbar'                  " variables and functions preview
+Plugin 'ctrlpvim/ctrlp.vim'      " find label
+Plugin 'Auto-Pairs'              " auto pairs
+Plugin 'Vimjas/vim-python-pep8-indent' " python pep8 indent
+Plugin 'junegunn/seoul256.vim'   " color scheme
+Plugin 'vim-airline/vim-airline' " status/tabline
+Plugin 'mhinz/vim-signify'       " show differences
+Plugin 'SirVer/ultisnips'        " snippets engine
+Plugin 'honza/vim-snippets'      " snippets instances
+Plugin 'Yggdroot/LeaderF'        " locating files
+Plugin 'w0rp/ale'                " asynchronous lint engine
+
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -99,16 +108,24 @@ set listchars=tab:>-,trail:-
 autocmd FileType python setlocal expandtab
 
 " 脚本目录下自动设置LPC文件类型
-autocmd FileType c,h
-\ if getcwd() =~ "logic"
-\	| setlocal ft=lpc
-\	| let lpc_syntax_for_c=1
-\	| set tabstop=8
-\	| set softtabstop=8
-\	| set shiftwidth=8
-\ | endif
+"autocmd FileType c,h
+"\ if getcwd() =~ "logic"
+"\	| setlocal ft=lpc
+"\	| let lpc_syntax_for_c=1
+"\	| set tabstop=8
+"\	| set softtabstop=8
+"\	| set shiftwidth=8
+"\ | endif
+
+" 解决插入模式下delete/backspce键失效问题
+" 0 same as “:set backspace=” (Vi compatible)
+" 1 same as “:set backspace=indent,eol”
+" 2 same as “:set backspace=indent,eol,start”
+set backspace=2
 
 " NERD tree
+" Disable directory arrows so nerdtree works on (almost) every terminal.
+let g:NERDTreeDirArrows=0
 " Automatically Change Current Working Directory
 let NERDTreeChDirMode=2
 " Ingore Files or Directories
@@ -157,3 +174,19 @@ endif
 " tabular
 nnoremap <leader>t :Tab/
 vnoremap <leader>t :Tab/
+
+" Unified color scheme
+colorscheme seoul256
+
+" UitlSnips
+let g:UltiSnipsExpandTrigger="<nop>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+
+" Python settings
+autocmd filetype python set colorcolumn=80
+autocmd filetype python set foldmethod=indent
+autocmd filetype python nnoremap <space> za
+autocmd filetype python set foldnestmax=2
+autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
+
