@@ -17,7 +17,6 @@ Plugin 'VundleVim/Vundle.vim'
 " add your plugin
 Plugin 'scrooloose/nerdtree'           " directory preview
 Plugin 'godlygeek/tabular'             " alignment by selected label
-"Plugin 'ctrlpvim/ctrlp.vim'            " find label
 Plugin 'Auto-Pairs'                    " auto pairs
 Plugin 'Vimjas/vim-python-pep8-indent' " python pep8 indent
 Plugin 'junegunn/seoul256.vim'         " color scheme
@@ -123,21 +122,6 @@ autocmd vimenter * if !argc() | NERDTree | endif
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 " Toggle NERDTree
 nmap <F3> :NERDTreeToggle<CR>
-
-" ctrlp
-"let g:ctrlp_working_path_mode = 'a'
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir': '\v[\/]\.(git|hg|svn)$',
-"  \ 'file': '\v\.(exe|so|dll|pyc)$',
-"  \ }
-"if executable('ag')
-"  " Use Ag over Grep
-"  set grepprg=ag\ --nogroup\ --nocolor
-"  " Use ag in CtrlP for listing files.
-"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-"  " Ag is fast enough that CtrlP doesn't need to cache
-"  let g:ctrlp_use_caching = 0
-"endif
 
 " tabular
 nnoremap <leader>t :Tab/
