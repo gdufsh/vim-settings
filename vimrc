@@ -1,3 +1,7 @@
+if has("win32") || has("win16")
+    language messages en
+endif
+
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -11,20 +15,19 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " add your plugin
-Plugin 'scrooloose/nerdtree'     " directory preview
-Plugin 'godlygeek/tabular'       " alignment by selected label
-Plugin 'Tagbar'                  " variables and functions preview
-Plugin 'ctrlpvim/ctrlp.vim'      " find label
-Plugin 'Auto-Pairs'              " auto pairs
+Plugin 'scrooloose/nerdtree'           " directory preview
+Plugin 'godlygeek/tabular'             " alignment by selected label
+"Plugin 'ctrlpvim/ctrlp.vim'            " find label
+Plugin 'Auto-Pairs'                    " auto pairs
 Plugin 'Vimjas/vim-python-pep8-indent' " python pep8 indent
-Plugin 'junegunn/seoul256.vim'   " color scheme
-Plugin 'vim-airline/vim-airline' " status/tabline
-Plugin 'mhinz/vim-signify'       " show differences
-Plugin 'SirVer/ultisnips'        " snippets engine
-Plugin 'honza/vim-snippets'      " snippets instances
-Plugin 'Yggdroot/LeaderF'        " locating files
-Plugin 'w0rp/ale'                " asynchronous lint engine
-
+Plugin 'junegunn/seoul256.vim'         " color scheme
+Plugin 'vim-airline/vim-airline'       " status/tabline
+Plugin 'mhinz/vim-signify'             " show differences
+Plugin 'SirVer/ultisnips'              " snippets engine
+Plugin 'honza/vim-snippets'            " snippets instances
+Plugin 'Yggdroot/LeaderF'              " locating files
+Plugin 'w0rp/ale'                      " asynchronous lint engine
+Plugin 'Valloric/YouCompleteMe'        " code-completion engine
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -41,87 +44,71 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 
-" …Ë÷√leaderº¸Œ™,
+" leader key
 let mapleader=","
 
-" ’≥Ã˘ƒ£ Ω«–ªª
+" toggle paste mode
 set pastetoggle=<F9>
 
-" ”Ô∑®∏ﬂ¡¡
-if !exists("g:syntax_on")
-	syntax enable
-endif
+" enable syntax
+syntax on
 
-" ”√«≥…´∏ﬂ¡¡µ±«∞––
-autocmd InsertLeave * se nocul
-autocmd InsertEnter * se cul
+" file encoding and decoding order
+set encoding=utf-8
+set fileencodings=utf-8,chinese,gbk,gb2312,cp936,cp950,gb18030,ucs-bom,utf-16,latin1
 
-" Œƒº˛±‡¬Î
-set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
-
-" ÷«ƒ‹∂‘∆Î
+" indent
 set smartindent
-" ◊‘∂Ø∂‘∆Î
 set autoindent
 
-" Õ≥“ªÀıΩ¯Œ™4
+" indent with 4
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
 
-" œ‘ æ––∫≈
+" show lineno
 set number
 
-" À—À˜÷◊÷∑˚∏ﬂ¡¡
+" highlight serach
 set hlsearch
 set incsearch
 
-" ◊‹ «œ‘ æ◊¥Ã¨––
-set laststatus=2
-set statusline=%F%m%r%h%w\ [FORMAT=%{&ff}]\ [TYPE=%Y]\ [LEN=%L][POS=%l,%v][%p%%]\ %{strftime(\"%d/%m/%y\ -\ %H:%M\")}
-
-" ‘⁄«–ªªbuffer ±◊‘∂Ø±£¥Êµ±«∞Œƒº˛
+" auto save when switch buffer
 set autowrite
 
-" ‘ˆ«øƒ£ Ω÷–µƒ√¸¡Ó––◊‘∂ØÕÍ≥…≤Ÿ◊˜
-set wildmenu
-
-" ‘ˆº”µ•¥ ◊÷∑˚
+" expand keyword definition
 set iskeyword+=_,$,@,%
 
-" ’€µ˛
+" fold setting
 set foldmethod=indent
 set nofoldenable
 
-" ◊‘∂Ø«–ªªµ±«∞ƒø¬º
-set autochdir
+" tags setting
+"set autochdir
+"set tags=./tags;$HOME
 
-" …Ë÷√œÚ…œ≤È’“tagsŒƒº˛
-set tags=./tags;$HOME
+" set tab visible.
+autocmd WinEnter,BufEnter,BufNewFile,BufRead * 2match TabLineFill /\t/
 
-" œ‘ æTAB∫Õ––ƒ©ø’∏Ò
-set list
-set listchars=tab:>-,trail:-
-
-" PythonŒƒº˛◊‘∂Ø”√ø’∏ÒÃÊ¥˙TAB
-autocmd FileType python setlocal expandtab
-
-" Ω≈±æƒø¬ºœ¬◊‘∂Ø…Ë÷√LPCŒƒº˛¿‡–Õ
-"autocmd FileType c,h
-"\ if getcwd() =~ "logic"
-"\	| setlocal ft=lpc
-"\	| let lpc_syntax_for_c=1
-"\	| set tabstop=8
-"\	| set softtabstop=8
-"\	| set shiftwidth=8
-"\ | endif
-
-" Ω‚æˆ≤Â»Îƒ£ Ωœ¬delete/backspceº¸ ß–ßŒ Ã‚
-" 0 same as °∞:set backspace=°± (Vi compatible)
-" 1 same as °∞:set backspace=indent,eol°±
-" 2 same as °∞:set backspace=indent,eol,start°±
+" 0 same as ‚Äú:set backspace=‚Äù (Vi compatible)
+" 1 same as ‚Äú:set backspace=indent,eol‚Äù
+" 2 same as ‚Äú:set backspace=indent,eol,start‚Äù
 set backspace=2
+
+" Python settings
+autocmd filetype python set colorcolumn=80
+autocmd filetype python set foldmethod=indent
+autocmd filetype python nnoremap <space> za
+autocmd filetype python set foldnestmax=2
+autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
+autocmd filetype python let g:syntastic_quiet_messages = { "type": "style" }
+autocmd filetype python set et
+fu! _SetUtf8()
+    call append(0, "# -*- coding: utf-8 -*-")
+    set fileencoding=utf-8
+endfunction
+autocmd filetype python nmap <leader>u :call _SetUtf8()<CR>
 
 " NERD tree
 " Disable directory arrows so nerdtree works on (almost) every terminal.
@@ -134,42 +121,23 @@ let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-" Open a NERDTree
-nmap <F5> :NERDTreeToggle<CR>
-
-" Tagbar
-let g:tagbar_autofocus=1
-nmap <F6> :TagbarToggle<CR>
-let g:tagbar_type_typescript = {
-  \ 'ctagsbin' : 'tstags',
-  \ 'ctagsargs' : '-f-',
-  \ 'kinds': [
-    \ 'e:enums:0:1',
-    \ 'f:function:0:1',
-    \ 't:typealias:0:1',
-    \ 'M:Module:0:1',
-    \ 'I:import:0:1',
-    \ 'i:interface:0:1',
-    \ 'C:class:0:1',
-    \ 'm:method:0:1',
-    \ 'p:property:0:1',
-    \ 'v:variable:0:1',
-    \ 'c:const:0:1',
-  \ ],
-  \ 'sort' : 0
-\ }
+" Toggle NERDTree
+nmap <F3> :NERDTreeToggle<CR>
 
 " ctrlp
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip,*.png,*.jpg,*.jpeg,*.gif " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup\ --nocolor
-  " Use ag in CtrlP for listing files.
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  " Ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
-endif
+"let g:ctrlp_working_path_mode = 'a'
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir': '\v[\/]\.(git|hg|svn)$',
+"  \ 'file': '\v\.(exe|so|dll|pyc)$',
+"  \ }
+"if executable('ag')
+"  " Use Ag over Grep
+"  set grepprg=ag\ --nogroup\ --nocolor
+"  " Use ag in CtrlP for listing files.
+"  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+"  " Ag is fast enough that CtrlP doesn't need to cache
+"  let g:ctrlp_use_caching = 0
+"endif
 
 " tabular
 nnoremap <leader>t :Tab/
@@ -183,10 +151,25 @@ let g:UltiSnipsExpandTrigger="<nop>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
-" Python settings
-autocmd filetype python set colorcolumn=80
-autocmd filetype python set foldmethod=indent
-autocmd filetype python nnoremap <space> za
-autocmd filetype python set foldnestmax=2
-autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
+" YouCompleteMe settings
+let g:ycm_autoclose_preview_window_after_insertion = 1
+let g:ycm_key_list_select_completion=["<tab>"]
+let g:ycm_key_list_previous_completion=["<S-tab>"]
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
+let g:ycm_server_log_level = 'info'
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_key_invoke_completion = '<c-z>'
+set completeopt=menu,menuone
+"noremap <c-z> <NOP>
+
+let g:ycm_semantic_triggers =  {
+\ 'c,cpp,python': ['re!\w{2}'],
+\ }
+let g:ycm_filetype_blacklist = {
+\ 'tagbar' : 1,
+\ 'nerdtree' : 1,
+\}
 
