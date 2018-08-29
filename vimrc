@@ -129,6 +129,7 @@ vnoremap <leader>t :Tab/
 colorscheme seoul256
 
 " LeaderF settings
+let g:Lf_DefaultMode='FullPath'
 let g:Lf_WorkingDirectoryMode='a'
 let g:Lf_CommandMap = {'<C-]>': ['<C-V>'], '<C-X>': ['<C-H>']}
 
