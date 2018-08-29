@@ -27,6 +27,8 @@ Plugin 'honza/vim-snippets'            " snippets instances
 Plugin 'Yggdroot/LeaderF'              " locating files
 Plugin 'w0rp/ale'                      " asynchronous lint engine
 Plugin 'Valloric/YouCompleteMe'        " code-completion engine
+Plugin 'jremmen/vim-ripgrep'           " use RipGrep in Vim
+Plugin 'yssl/QFEnter'                  " open items from location list
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -82,10 +84,6 @@ set iskeyword+=_,$,@,%
 " fold setting
 set foldmethod=indent
 set nofoldenable
-
-" tags setting
-"set autochdir
-"set tags=./tags;$HOME
 
 " set tab visible.
 autocmd WinEnter,BufEnter,BufNewFile,BufRead * 2match TabLineFill /\t/
@@ -193,4 +191,12 @@ function! Ulti_ExpandOrEnter()
         return "\<return>"
 endfunction
 inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
+
+" vim-ripgrep settings
+nmap <c-p> :Rg ""<left>
+
+" QFEnter settings
+let g:qfenter_keymap = {}
+let g:qfenter_keymap.vopen = ['<c-v>']
+let g:qfenter_keymap.hopen = ['<c-h>']
 
