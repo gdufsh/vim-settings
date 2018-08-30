@@ -132,6 +132,11 @@ colorscheme seoul256
 let g:Lf_DefaultMode='FullPath'
 let g:Lf_WorkingDirectoryMode='a'
 let g:Lf_CommandMap = {'<C-]>': ['<C-V>'], '<C-X>': ['<C-H>']}
+let g:Lf_WildIgnore = {
+\ 'dir': ['.svn','.git','.hg'],
+\ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+\}
+let g:Lf_UseCache = 0
 
 " ALE settings
 let g:ale_linters = {
@@ -195,6 +200,8 @@ inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
 
 " vim-ripgrep settings
 nmap <c-p> :Rg ""<left>
+let g:rg_highlight=1
+let g:rg_root_types=['.git', '.svn']
 
 " QFEnter settings
 let g:qfenter_keymap = {}
