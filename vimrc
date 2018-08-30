@@ -1,7 +1,3 @@
-if has("win32") || has("win16")
-    language messages en
-endif
-
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
@@ -218,4 +214,15 @@ let g:rg_root_types=['.git', '.svn']
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.vopen = ['<c-v>']
 let g:qfenter_keymap.hopen = ['<c-h>']
+
+" Windows settings
+if has("win32") || has("win16")
+       set guioptions-=m  "remove menu bar
+       set guioptions-=T  "remove toolbar
+       set guioptions-=r  "remove right-hand scroll bar
+       set guioptions-=L  "remove left-hand scroll bar
+
+       language messages en
+       inoremap <C-S-V> <ESC>:setl paste<CR>gi<C-R>+<ESC>:setl nopaste<CR>gi
+endif
 
