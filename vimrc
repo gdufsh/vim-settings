@@ -136,13 +136,18 @@ let g:Lf_WildIgnore = {
 \ 'dir': ['.svn','.git','.hg'],
 \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
 \}
-let g:Lf_UseCache = 0
 
 " ALE settings
 let g:ale_linters = {
 \    'python': ['flake8'],
 \}
 let g:ale_python_flake8_options="--builtins network,ccp,CCSize,CCRect,ccc3,ccc4,ccc4f,ccc3FromHex,ccc4FromHex,ccc4aFromHex,ccc4fFromHex,get_sprite_frame_fail,GetSpriteFrameFromPlistAndPath,GetTextByLanguageI,message,leading_message,message_debug,confirm_show,tip_tick,ui_show,ui_set_visible,ui_get,ui_get_type_all,ui_hide_type,ui_close,uisystem,_,filter_text,filter_nickname"
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'javascript': ['eslint'],
+\}
+nnoremap <leader>af :ALEFix
+nnoremap <leader>as :ALEFixSuggest
 
 " YouCompleteMe settings
 let g:ycm_key_list_select_completion = ["<tab>"]
