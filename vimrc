@@ -94,6 +94,13 @@ autocmd WinEnter,BufEnter,BufNewFile,BufRead * 2match TabLineFill /\t/
 " 2 same as “:set backspace=indent,eol,start”
 set backspace=2
 
+" tabs split
+nnoremap <leader>ts :tab split<CR>
+
+" split a window for the directory which current file is in
+nnoremap <leader>s :split %:p:h<CR>
+nnoremap <leader>vs :vsplit %:p:h<CR>
+
 " Python settings
 autocmd filetype python set colorcolumn=80
 autocmd filetype python set foldmethod=indent
@@ -102,11 +109,6 @@ autocmd filetype python set foldnestmax=2
 autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
 autocmd filetype python let g:syntastic_quiet_messages = { "type": "style" }
 autocmd filetype python set et
-fu! _SetUtf8()
-    call append(0, "# -*- coding: utf-8 -*-")
-    set fileencoding=utf-8
-endfunction
-autocmd filetype python nmap <leader>u :call _SetUtf8()<CR>
 
 " NERD tree
 " Disable directory arrows so nerdtree works on (almost) every terminal.
@@ -123,8 +125,8 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 nmap <F3> :NERDTreeToggle<CR>
 
 " tabular
-nnoremap <leader>t :Tab/
-vnoremap <leader>t :Tab/
+nnoremap <leader>= :Tab/
+vnoremap <leader>= :Tab/
 
 " Unified color scheme
 colorscheme seoul256
@@ -206,7 +208,8 @@ endfunction
 inoremap <return> <C-R>=Ulti_ExpandOrEnter()<CR>
 
 " vim-ripgrep settings
-nnoremap <leader>r :Rg ""<left>
+nnoremap <leader>rg :Rg ""<left>
+nnoremap <leader>rc :Rg <CR>
 let g:rg_highlight=1
 let g:rg_root_types=['.git', '.svn']
 
