@@ -98,8 +98,12 @@ set backspace=2
 nnoremap <leader>ts :tab split<CR>
 
 " split a window for the directory which current file is in
-nnoremap <leader>s :split %:p:h<CR>
+nnoremap <leader>hs :split %:p:h<CR>
 nnoremap <leader>vs :vsplit %:p:h<CR>
+
+" window resize
+nnoremap <leader>hr :resize +5
+nnoremap <leader>vr :vertical resize +5
 
 " Python settings
 autocmd filetype python set colorcolumn=80
