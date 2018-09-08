@@ -114,7 +114,7 @@ let g:NERDTreeDirArrows=0
 " Automatically Change Current Working Directory
 let NERDTreeChDirMode=2
 " Ingore Files or Directories
-let NERDTreeIgnore=['\~$', '\.pyc$', '\.swp$']
+let NERDTreeIgnore=['\~$', '\.swp$']
 " Automatically open a NERDTree if no files where specified
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
