@@ -68,6 +68,7 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
+set expandtab
 
 " show lineno
 set number
@@ -88,6 +89,12 @@ set nofoldenable
 
 " set tab visible.
 autocmd WinEnter,BufEnter,BufNewFile,BufRead * 2match TabLineFill /\t/
+
+" search for the file named 'tags', starting with the directory of the current
+" file and then going to the parent directory and then recursively to the
+" directory one level above, till it either locates the 'tags' file or reaches
+" the root directory
+set tags=./.tags;
 
 " 0 same as “:set backspace=” (Vi compatible)
 " 1 same as “:set backspace=indent,eol”
@@ -120,7 +127,7 @@ let g:NERDTreeDirArrows=0
 " Automatically Change Current Working Directory
 let NERDTreeChDirMode=2
 " Ingore Files or Directories
-let NERDTreeIgnore=['\~$', '\.swp$']
+let NERDTreeIgnore=['\~$', '\.swp$', '\.pyc$']
 " Automatically open a NERDTree if no files where specified
 autocmd vimenter * if !argc() | NERDTree | endif
 " Close vim if the only window left open is a NERDTree
@@ -174,7 +181,7 @@ let g:ycm_filetype_blacklist = {
 \ 'nerdtree' : 1,
 \}
 set completeopt=menu,menuone
-nnoremap <c-]> :YcmCompleter GoToDefinitionElseDeclaration<CR>
+nnoremap <leader>] :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
 " UitlSnips settings
 let g:UltiSnipsExpandTrigger="<c-j>"
