@@ -68,7 +68,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set shiftround
-set expandtab
 
 " show lineno
 set number
@@ -120,6 +119,7 @@ autocmd filetype python set foldnestmax=2
 autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
 autocmd filetype python let g:syntastic_quiet_messages = { "type": "style" }
 autocmd filetype python set et
+autocmd filetype python set expandtab
 
 " NERD tree
 " Disable directory arrows so nerdtree works on (almost) every terminal.
