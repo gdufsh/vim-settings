@@ -13,7 +13,7 @@ test -f ~/.vimrc && mv ~/.vimrc ~/.vimrc.bak
 ln -s ~/download/vim-settings ~/.vim
 ```
 
-Installa Plugins
+Install Plugins
 ==============
 ```
 cd ~/.vim
