@@ -20,5 +20,13 @@ cd ~/.vim
 git submodule update --init --recursive
 vim -c "PluginInstall"
 cd .vim/bundle/YouCompleteMe && ./install.py
+```
+
+Install Tools
+==============
+```
+apt install ripgrep
 pip install flake8
+pip install autopep8
+pip install yapf
 ```
