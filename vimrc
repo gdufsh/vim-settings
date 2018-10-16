@@ -159,7 +159,7 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
-nnoremap <leader>af :ALEFix
+nnoremap <leader>af :ALEFix 
 nnoremap <leader>as :ALEFixSuggest
 
 " YouCompleteMe settings
