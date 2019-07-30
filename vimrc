@@ -30,6 +30,7 @@ Plugin 'w0rp/ale'                      " asynchronous lint engine
 Plugin 'Valloric/YouCompleteMe'        " code-completion engine
 Plugin 'jremmen/vim-ripgrep'           " use RipGrep in Vim
 Plugin 'yssl/QFEnter'                  " open items from location list
+Plugin 'fatih/vim-go'                  " go development plugin
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -227,6 +228,10 @@ let g:rg_root_types=['.git', '.svn']
 let g:qfenter_keymap = {}
 let g:qfenter_keymap.vopen = ['<c-v>']
 let g:qfenter_keymap.hopen = ['<c-h>']
+
+" vim-go settings
+let g:go_get_update = 0
+autocmd filetype go nnoremap <leader>] :GoDef<CR>
 
 " Windows settings
 if has("win32") || has("win16")
