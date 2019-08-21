@@ -20,6 +20,8 @@ cd ~/.vim
 git submodule update --init --recursive
 vim -c "PluginInstall"
 cd .vim/bundle/YouCompleteMe && ./install.py
+GO111MODULE=on go get golang.org/x/tools/gopls@latest
+vim -c "GoInstallBinaries"
 ```
 
 Install Tools
