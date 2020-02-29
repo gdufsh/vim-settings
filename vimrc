@@ -70,6 +70,9 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 
+" expandtab
+set expandtab
+
 " show lineno
 set number
 
@@ -159,7 +162,9 @@ let g:ale_python_flake8_options="--builtins network,ccp,CCSize,CCRect,ccc3,ccc4,
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
+\   'python': ['black'],
 \}
+let g:ale_python_black_options = "--line-length=79"
 nnoremap <leader>af :ALEFix 
 nnoremap <leader>as :ALEFixSuggest
 
