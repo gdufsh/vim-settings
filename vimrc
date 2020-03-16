@@ -3,11 +3,11 @@ filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
 if has("win32") || has("win16")
-	set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
-	call vundle#begin('$HOME/vimfiles/bundle/')
+    set rtp+=$HOME/vimfiles/bundle/Vundle.vim/
+    call vundle#begin('$HOME/vimfiles/bundle/')
 else
-	set rtp+=~/.vim/bundle/Vundle.vim
-	call vundle#begin()
+    set rtp+=~/.vim/bundle/Vundle.vim
+    call vundle#begin()
 endif
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
@@ -70,9 +70,6 @@ set softtabstop=4
 set shiftwidth=4
 set shiftround
 
-" expandtab
-set expandtab
-
 " show lineno
 set number
 
@@ -92,6 +89,10 @@ set nofoldenable
 
 " set tab visible.
 autocmd WinEnter,BufEnter,BufNewFile,BufRead * 2match TabLineFill /\t/
+
+" highlight redundant whitespace
+highlight BadWhitespace ctermbg=1 guibg=red
+autocmd BufNewFile,BufRead *.py,*.pyw,*.c,*.h,*.go match BadWhitespace /\s\+$/
 
 " search for the file named 'tags', starting with the directory of the current
 " file and then going to the parent directory and then recursively to the
@@ -120,10 +121,19 @@ autocmd filetype python set colorcolumn=80
 autocmd filetype python set foldmethod=indent
 autocmd filetype python nnoremap <space> za
 autocmd filetype python set foldnestmax=2
-autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
 autocmd filetype python let g:syntastic_quiet_messages = { "type": "style" }
-autocmd filetype python set et
-autocmd filetype python set expandtab
+autocmd WinEnter,BufEnter,BufNewFile,BufRead *.py match Error /[\t ]\+$/
+autocmd BufNewFile,BufRead *.py
+    \ set textwidth=79 |
+    \ set expandtab |
+    \ set autoindent |
+    \ set fileformat=unix
+
+" Go settings
+au BufNewFile,BufRead *.go
+    \ set noexpandtab |
+    \ set smartindent |
+    \ set fileformat=unix
 
 " NERD tree
 " Disable directory arrows so nerdtree works on (almost) every terminal.
@@ -158,7 +168,6 @@ let g:Lf_WildIgnore = {
 let g:ale_linters = {
 \    'python': ['flake8'],
 \}
-let g:ale_python_flake8_options="--builtins network,ccp,CCSize,CCRect,ccc3,ccc4,ccc4f,ccc3FromHex,ccc4FromHex,ccc4aFromHex,ccc4fFromHex,get_sprite_frame_fail,GetSpriteFrameFromPlistAndPath,GetTextByLanguageI,message,leading_message,message_debug,confirm_show,tip_tick,ui_show,ui_set_visible,ui_get,ui_get_type_all,ui_hide_type,ui_close,uisystem,_,filter_text,filter_nickname"
 let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
@@ -176,6 +185,7 @@ let g:ycm_show_diagnostics_ui = 0
 let g:ycm_server_log_level = 'info'
 let g:ycm_min_num_identifier_candidate_chars = 2
 let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_autoclose_preview_window_after_completion=1
 let g:ycm_complete_in_strings = 1
 let g:ycm_complete_in_comments = 1
 let g:ycm_semantic_triggers =  {
